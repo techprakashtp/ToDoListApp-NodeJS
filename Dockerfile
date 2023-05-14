@@ -12,6 +12,6 @@ RUN npm install express
 
 COPY --chown=node:node . .
 
-EXPOSE 8086
+EXPOSE 8082
 
 CMD [ "node", "index.js" ]
