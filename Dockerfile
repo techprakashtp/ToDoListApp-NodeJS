@@ -7,7 +7,7 @@ WORKDIR /home/node/app
 COPY package*.json ./
 
 USER node
-
+RUN npm install 
 RUN npm install express
 
 COPY --chown=node:node . .
