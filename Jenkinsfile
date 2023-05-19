@@ -9,7 +9,7 @@ pipeline {
   stages {
     stage('Build') {
       steps {
-	sh 'sudo docker build -t jprakash1/nodejs-todolist-app .'
+	sh 'docker build -t jprakash1/nodejs-todolist .'
       } 
     }
     stage('Login') {
