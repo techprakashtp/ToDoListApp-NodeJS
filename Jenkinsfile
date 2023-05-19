@@ -9,6 +9,7 @@ pipeline {
   stages {
     stage('Build') {
       steps {
+	sh 'gpasswd -a jenkins docker'      
 	sh 'docker build -t jprakash1/nodejs-todolist .'
       } 
     }
