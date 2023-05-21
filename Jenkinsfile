@@ -19,7 +19,6 @@ pipeline {
     }	    
     stage('Build') {
       steps {   
-	sh 'groupadd docker'
 	sh 'gpasswd -a jenkins docker'  
 	sh 'service docker status'
 	sh 'ls -la /var/run/docker.sock'
