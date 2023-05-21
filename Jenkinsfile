@@ -21,7 +21,6 @@ pipeline {
       steps {   
 	sh 'systemctl start docker'
 	sh 'systemctl restart docker'
-	sh 'systemctl status docker'
 	sh 'groupadd docker'
 	sh 'gpasswd -a jenkins docker'  
 	sh 'ls -la /var/run/docker.sock'
