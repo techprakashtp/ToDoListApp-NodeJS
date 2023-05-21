@@ -6,17 +6,7 @@ pipeline {
   environment {
     DOCKERHUB_CREDENTIALS = credentials('dockerhub')
   }
-  stages {
-    stage('Install') {
-      steps { 
-	sh 'apt install apt-transport-https ca-certificates curl software-properties-common' 
-	sh 'curl -fsSL https://download.docker.com/linux/ubuntu/gpg'
-	sh 'apt update'
-	sh 'apt-cache policy docker-ce'
-	sh 'apt install docker-ce'
-	sh 'docker --version'
-      }
-    }	    
+  stages { 
     stage('Build') {
       steps {   
 	sh 'gpasswd -a jenkins docker'  
