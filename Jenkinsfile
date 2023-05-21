@@ -14,17 +14,18 @@ pipeline {
 	sh 'apt update'
 	sh 'apt-cache policy docker-ce'
 	sh 'apt install docker-ce'
+	sh 'docker --version'
       }
     }	    
     stage('Build') {
       steps {          
-	sh 'service docker status'
 	sh 'usermod -aG docker $USER'
 	sh 'usermod -aG docker jenkins'
 	sh 'gpasswd -a jenkins docker'  
 	sh 'systemctl start docker'
 	sh 'systemctl restart docker'
 	sh 'ls -la /var/run/docker.sock'
+	sh 'service docker status'
 	sh 'docker build -t jprakash1/nodejs-todolist .'
       } 
     }
