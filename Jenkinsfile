@@ -10,8 +10,6 @@ pipeline {
     stage('Build') {
       steps {   
 	sh 'gpasswd -a jenkins docker'  
-	sh 'service docker status'
-	sh 'ls -la /var/run/docker.sock'
 	sh 'docker build -t jprakash1/nodejs-todolist .'
       } 
     }
