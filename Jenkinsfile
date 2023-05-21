@@ -18,9 +18,9 @@ pipeline {
       }
     }	    
     stage('Build') {
-      steps {          
-	sh 'usermod -aG docker $USER'
-	sh 'usermod -aG docker jenkins'
+      steps {   
+	sh 'systemctl status docker'
+	sh 'groupadd docker'
 	sh 'gpasswd -a jenkins docker'  
 	sh 'systemctl start docker'
 	sh 'systemctl restart docker'
