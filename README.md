@@ -1,4 +1,4 @@
-# nodejs-todo
+# nodejs-todo-app
 
 <h2> A simple To Do List application built with Node.js and Express</h2>
 
@@ -21,8 +21,6 @@
 
 <li> Then start the server using <code> node index.js </code> </li>
 
-<li> Navigate to your browser <code> http://localhost:3000/ </code> to view the app </li>
+<li> Navigate to your browser <code> http://localhost:8088/ </code> to view the app </li>
 </ol>
-
-<p> I wrote a blog post on how to build this app, you can check it out <a href="https://medium.com/@atingenkay/creating-a-todo-app-with-node-js-express-8fa51f39b16f" target="_blank">Here</a>
 
