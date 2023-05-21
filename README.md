@@ -1,6 +1,6 @@
 # nodejs-todo-app
 
-<h2> A simple To Do List application built with Node.js and Express</h2>
+<h2> NodeJS To Do List Application built with Node.js and Express</h2>
 
 <p> Nodejs application that let's you add and complete task on a single page, storing both new and completed task in a different array. This appllication makes use of: </p>
 
@@ -9,11 +9,9 @@
 
 <li> Body-parser - This extracts the entire body portion of an incoming request stream and exposes it on req.body </li>
 </ul>
-
-![png](https://github.com/missating/nodejs-todo/blob/master/todo.png?raw=true 'web todo')
+<img src="https://res.cloudinary.com/daa4m1qab/image/upload/e_pixelate_faces:5/v1684697017/Screenshot/nodejs-todolist-app_grruxk.png" alt="HTML5 Icon" width=" " height=" ">
 
 <br>
-
 <p> How to run the app locally: </p>
 
 <ol>
