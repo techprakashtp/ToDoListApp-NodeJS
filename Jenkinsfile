@@ -11,7 +11,7 @@ pipeline {
       steps {   
 	sh 'docker --version'
 	sh 'gpasswd -a jenkins docker'  
-	sh 'docker build -t jprakash1/nodejs-todolist-app .'
+	sh 'docker build -t jprakash1/node-todolist-app .'
       } 
     }
     stage('Login') {
