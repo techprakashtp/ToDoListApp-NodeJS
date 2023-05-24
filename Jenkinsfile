@@ -21,7 +21,7 @@ pipeline {
     }
     stage('Push') {
       steps {
-        sh 'docker push jprakash1/nodejs-todolist-app'
+        sh 'docker push jprakash1/node-todolist-app'
       }
     }
   }
