@@ -19,11 +19,14 @@ pipeline {
   
     stage('Build Docker Image') {         
        steps{  
+         script {
         sh 'gpasswd -a jenkins docker'           
         docker.build "${Repo_Name}:${image_tag}"
         echo 'Build Image Completed'   
-      }         
-    }
+           
+         }
+      }       
+   }
     
     stage('Running image') {
        steps {
