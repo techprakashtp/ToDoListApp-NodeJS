@@ -11,12 +11,11 @@ pipeline {
   agent any
   
   stages {         
-    stage("Git Checkout"){           
-      steps{                
-      git credentialsId: 'github', url: 'https://github.com/techprakashtp/ToDoListApp-NodeJS.git'                 
-      echo 'Git Checkout Completed'            
-      }        
-    }
+    stage('Cloning Git') {
+            steps {
+                git([url: 'https://github.com/techprakashtp/ToDoListApp-NodeJS.git', branch: 'main'])
+            }
+        }
   
     stage('Build Docker Image') {         
        steps{  
@@ -41,7 +40,7 @@ pipeline {
     
     stage('Login') {
       steps {
-        sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
+        sh 'echo ${DOCKERHUB_CREDENTIALS_PSW} | docker login -u ${DOCKERHUB_CREDENTIALS_USR} --password-stdin'
         echo 'Login Completed'
       }
     }
