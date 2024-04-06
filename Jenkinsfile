@@ -4,7 +4,6 @@ pipeline {
   environment {
     Repo_Name='jprakash1/node-todolist-app'
     Container_Name = 'my-container'
-    dockerImage = ''
     image_tag='latest'
     DOCKERHUB_CREDENTIALS = credentials('dockerhub')
   }
@@ -21,14 +20,14 @@ pipeline {
     stage('Build Docker Image') {         
        steps{  
         sh 'gpasswd -a jenkins docker'           
-        dockerImage = docker.build '${Repo_Name}:${image_tag}'
+        docker.build "${Repo_Name}:${image_tag}"
         echo 'Build Image Completed'   
       }         
     }
     
     stage('Running image') {
        steps {
-         sh 'docker run -d --name ${Container_Name} ${Repo_Name}:${image_tag}'
+         sh "docker run -d --name ${Container_Name} ${Repo_Name}:${image_tag}"
        }         
     }
         
