@@ -20,7 +20,7 @@ pipeline {
     stage('Build Docker Image') {         
        steps{  
         sh 'gpasswd -a jenkins docker'          
-        sh 'sudo docker build -t ${Repo_Name}:${BUILD_NUMBER} .'           
+        sh 'sudo docker build -t ${Repo_Name}:${BUILD_NUMBER}'           
         echo 'Build Image Completed'   
       }         
     }
