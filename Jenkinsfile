@@ -28,7 +28,7 @@ pipeline {
     
     stage('Running image') {
        steps {
-         sh 'docker run -d --name ${Container_Name} ${Repo_Name}:${image_tag}
+         sh 'docker run -d --name ${Container_Name} ${Repo_Name}:${image_tag}'
        }         
     }
         
