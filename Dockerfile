@@ -1,15 +1,25 @@
-FROM node:10-alpine
+# First Stage
 
-RUN mkdir -p /home/node/app/node_modules && chown -R node:node /home/node/app
+ FROM node:14-alpine AS base
+    
+ WORKDIR /app
+ 
+ COPY package*.json ./
+ 
+ COPY . .
+ 
+ RUN rm -Rf node_modules
+ 
+ RUN npm install 
+ 
+ 
+ # Second Stage
+ FROM node:14-slim AS production
 
-WORKDIR /home/node/app
+ WORKDIR /app
 
-COPY package*.json ./
+ COPY --from=base /app .
 
-USER node
+ EXPOSE 3000
 
-RUN npm install express
-
-COPY --chown=node:node . .
-
-CMD [ "node", "index.js" ]
+ CMD [ "node", "index.js" ]
