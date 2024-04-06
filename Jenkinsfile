@@ -4,30 +4,45 @@ pipeline {
     buildDiscarder(logRotator(numToKeepStr: '5'))
   }
   environment {
+    dockerhubusername='jprakash1'
+    dockerhubreponame='node-todolist-app'
+    BUILD_NUMBER='latest'
     DOCKERHUB_CREDENTIALS = credentials('dockerhub')
   }
-  stages { 
-    stage('Build') {
-      steps {   
-	sh 'docker --version'
-	sh 'gpasswd -a jenkins docker'  
-	sh 'docker build -t jprakash1/node-todolist-app .'
-      } 
+
+  stages {         
+    stage("Git Checkout"){           
+      steps{                
+      git credentialsId: 'github', url: 'https://github.com/techprakashtp/ToDoListApp-NodeJS.git'                 
+      echo 'Git Checkout Completed'            
+      }        
     }
+  
+    stage('Build Docker Image') {         
+      steps{        
+        sh 'gpasswd -a jenkins docker'          
+        sh 'sudo docker build -t dockerhubusername/dockerhubreponame:$BUILD_NUMBER .'           
+        echo 'Build Image Completed'                
+      }           
+    }
+
     stage('Login') {
       steps {
         sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
       }
     }
-    stage('Push') {
-      steps {
-        sh 'docker push jprakash1/node-todolist-app'
-      }
-    }
-  }
+
+    stage('Push Image to Docker Hub') {         
+      steps{                            
+        sh 'sudo docker push dockerhubusername/dockerhubreponame:$BUILD_NUMBER'                
+        echo 'Push Image Completed'       
+      }           
+    }      
+  } //stages
+
   post {
     always {
       sh 'docker logout'
     }
   }
-}
+} //pipeline
