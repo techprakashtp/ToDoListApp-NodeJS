@@ -4,8 +4,8 @@ pipeline {
     buildDiscarder(logRotator(numToKeepStr: '5'))
   }
   environment {
-    DockerHub_RepoName='jprakash1/node-todolist-app'
-    Container_Name = 'my-container'
+    DockerHubRepoName='jprakash1/node-todolist-app'
+    ContainerName = 'my-container'
     BUILD_NUMBER='latest'
     DOCKERHUB_CREDENTIALS = credentials('dockerhub')
   }
@@ -21,21 +21,21 @@ pipeline {
     stage('Build Docker Image') {         
       steps{        
         sh 'gpasswd -a jenkins docker'          
-        sh 'sudo docker build -t ${DockerHub_RepoName}:${BUILD_NUMBER} .'           
+        sh 'sudo docker build -t ${DockerHubRepoName}:${BUILD_NUMBER} .'           
         echo 'Build Image Completed'                
       }           
     }
     
     stage('Running image') {
        steps {
-         sh 'docker run -d --name ${Container_Name} ${DockerHub_RepoName}:${BUILD_NUMBER}
+         sh 'docker run -d --name ${ContainerName} ${DockerHubRepoName}:${BUILD_NUMBER}
        }           
     }
             
     stage('Stop and Remove Container') {
        steps {
-         sh 'docker stop ${Container_Name} || true'
-         sh 'docker rm ${Container_Name} || true'
+         sh 'docker stop ${ContainerName} || true'
+         sh 'docker rm ${ContainerName} || true'
        }           
     }
          
@@ -48,7 +48,7 @@ pipeline {
 
     stage('Push Image to Docker Hub') {         
       steps{                            
-        sh 'sudo docker push ${DockerHub_RepoName}:${BUILD_NUMBER}'                
+        sh 'sudo docker push ${DockerHubRepoName}:${BUILD_NUMBER}'                
         echo 'Push Image Completed'       
       }           
     }      
