@@ -32,7 +32,7 @@ pipeline {
        }           
     }
             
-    stage('Stop and Remove Container') {
+    stage('Stop Remove Container') {
        steps {
          sh 'docker stop ${Container_Name} '
          sh 'docker rm ${Container_Name} '
@@ -46,7 +46,7 @@ pipeline {
       }
     }
 
-    stage('Push Image to Docker Hub') {         
+    stage('Push Image Docker Hub') {         
       steps{                            
         sh 'sudo docker push ${Repo_Name}:${BUILD_NUMBER}'                
         echo 'Push Image Completed'       
