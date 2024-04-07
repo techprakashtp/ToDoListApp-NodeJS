@@ -13,7 +13,7 @@ pipeline {
   stages {         
     stage('Checkout Code') {
             steps {
-                 git branch: 'main', credentialsId: 'GITHUB', url: 'https://github.com/techprakashtp/ToDoListApp-NodeJS.git'
+                 git credentialsId: 'GITHUB', url: 'https://github.com/techprakashtp/ToDoListApp-NodeJS.git'
             }
         }
   
