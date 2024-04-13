@@ -20,6 +20,6 @@
 
  COPY --from=base /app .
 
- EXPOSE 3000
+ EXPOSE 8088
 
  CMD [ "node", "index.js" ]
