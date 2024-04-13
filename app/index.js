@@ -2,7 +2,7 @@
 var express = require("express");
 var bodyParser = require("body-parser");
 var app = express();
-const port = 8088;
+const port = 3000;
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.set("view engine", "ejs");
