@@ -4,7 +4,7 @@ pipeline {
   environment {
     Repo_Name='jprakash1/node-todo-app'
     Container_Name = 'my-container'
-    IMAGE_TAG='v2.0'
+    IMAGE_TAG='v3.0'
     GITHUB_CREDENTIALS = credentials('github-credentials')
     DOCKER_HUB_TOKEN = credentials('docker-hub-token')
   }
