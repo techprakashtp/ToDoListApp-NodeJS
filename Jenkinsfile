@@ -4,23 +4,23 @@ pipeline {
   environment {
     Repo_Name='jprakash1/node-todo-app'
     Container_Name = 'my-container'
-    IMAGE_TAG='latest'
-    DOCKERHUB_CREDENTIALS = credentials('docker-hub-credentials')
+    IMAGE_TAG='v2.0'
+    GITHUB_CREDENTIALS = credentials('github-credentials')
+    DOCKER_HUB_TOKEN = credentials('docker-hub-token')
   }
   
   agent any
   
   stages {         
-    stage('Checkout Code') {
+    stage('Cloning Git') {
             steps {
-                 git credentialsId: 'GITHUB', url: 'https://github.com/techprakashtp/ToDoListApp-NodeJS.git'
+                git([url: 'https://github.com/techprakashtp/ToDoListApp-NodeJS.git', branch: 'main'])
             }
         }
   
     stage('Build Docker Image') {         
        steps{  
-         script {
-        sh 'gpasswd -a jenkins docker'           
+         script {  
         docker.build "${Repo_Name}:${IMAGE_TAG}"
         echo 'Build Image Completed'   
            
@@ -44,11 +44,12 @@ pipeline {
       stage('Push Docker Image to Docker Hub') {
             steps {
                 script {
-                    docker.withRegistry('https://hub.docker.com/u/jprakash1/', DOCKERHUB_CREDENTIALS) {
+                    withDockerRegistry(credentialsId: 'docker-hub-cred', toolName: 'Docker') {
                         docker.image("${Repo_Name}:${IMAGE_TAG}").push()
                         echo 'Push Docker Image to Docker Hub Completed'
                     }
                 }
             }
-    } //stages
-} //pipeline
+    }
+  } 
+}
